@@ -139,7 +139,7 @@ class HierarchicalDeterministic
     {
         $childKey = $this->hdFactory->fromExtended($key);
 
-        if (!$childKey->isHardened()) {
+        if ($childKey->isHardened()) {
             throw new Exception('Can\'t derive a hardened key from public key');
         }
 
