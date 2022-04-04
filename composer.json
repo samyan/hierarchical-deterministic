@@ -1,0 +1,19 @@
+{
+    "name": "samyan/hierarchical-deterministic",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Samuel Petrosyan",
+            "email": "spetrosyan@codeblock.pro"
+        }
+    ],
+    "require": {
+        "bitwasp/bitcoin": "^1.0",
+        "web3p/ethereum-tx": "^0.4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "samyan\\HierarchicalDeterministic\\": "src/"
+        }
+    }
+}
