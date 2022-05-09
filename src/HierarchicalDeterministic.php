@@ -5,6 +5,7 @@ namespace samyan\HierarchicalDeterministic;
 use BitWasp\Bitcoin\Key\Deterministic\HierarchicalKey;
 use BitWasp\Bitcoin\Key\Factory\HierarchicalKeyFactory;
 use BitWasp\Bitcoin\Mnemonic\Bip39\Bip39SeedGenerator;
+use BitWasp\Bitcoin\Mnemonic\MnemonicFactory;
 use BitWasp\Buffertools\BufferInterface;
 use Exception;
 use Web3p\EthereumUtil\Util;
@@ -12,6 +13,9 @@ use Elliptic\EC;
 
 class HierarchicalDeterministic
 {
+    public const WORDS_12 = 128;
+    public const WORDS_24 = 256;
+
     private string $path;
     private Bip39SeedGenerator $bip39;
     private HierarchicalKeyFactory $hdFactory;
@@ -37,6 +41,18 @@ class HierarchicalDeterministic
         if ($mnemonicWords !== null) {
             $this->setMnemonicWords($mnemonicWords);
         }
+    }
+
+    /**
+     * Generate mnemonic words
+     *
+     * @param integer $entropySize
+     * @return string
+     */
+    public function generateMnemonicWords(int $entropySize): string
+    {
+        $bip39 = MnemonicFactory::bip39();
+        return $bip39->create($entropySize);
     }
 
     /**
